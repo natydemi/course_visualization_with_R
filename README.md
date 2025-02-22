@@ -28,11 +28,11 @@ repositório. Seguem alguns dos principais materiais relacionados:
 -   Slides das aulas "Visualização de dados com R e ggplot2" :
     [https://bit.ly/curso_datavizR_slides](#0){.uri}
 
--   Repositório de exemplos com boas-práticas de design:
-    <https://bit.ly/LL_dataviz_exemplos>
+-   Repositório de exemplos com boas-práticas de design do curso do
+    Linkedin Learning: <https://bit.ly/LL_dataviz_exemplos>
 
--   Meetup sobre Comunicação efetiva com dados:
-    <https://bit.ly/comunicacao_com_dados>
+-   Palestra sobre Comunicação efetiva com dados no Meetup do
+    Itaú-Unibanco: <https://bit.ly/comunicacao_com_dados>
 
 Para saber mais, entre em contato: <https://bit.ly/NathaliaDemetrio_DM>
 
