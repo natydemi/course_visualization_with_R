@@ -40,34 +40,34 @@ Para saber mais, entre em contato: <https://bit.ly/NathaliaDemetrio_DM>
 
 ### Edições
 
-Curso oferecido anualmente pelo Programa de Verão do IME-USP. Para mais
-informações, acesse: <https://bit.ly/cursoVeraoIMEUSP2022>
-
 > #### (2025) Visualização de Dados com R - EaD do Programa De Verão do IME-USP
 
-54º Programa De Verão do IME-USP
+-   Curso oferecido anualmente pelo Programa de Verão do IME-USP. Para
+    mais informações sobre o programa, acesse:
+    <https://bit.ly/cursoVeraoIMEUSP2022> .
 
-Ementa: <https://www.ime.usp.br/verao/index.php/turmas/descricao/520>
+-   Para a ementa do curso oferecido no 54º Programa de Verão do
+    IME-USP:
+    <https://www.ime.usp.br/verao/index.php/turmas/descricao/520>
 
-Pessoas monitoras:
+-   Pessoas monitoras:
 
-• Agatha Priscila Alves Nogueira
-([linkedIn](https://www.linkedin.com/in/agatha-nogueira/){.uri})
+    -   Agatha Priscila Alves Nogueira
+        ([linkedIn](https://www.linkedin.com/in/agatha-nogueira/){.uri})
 
-• Alan da Silva
-([linkedIn](https://www.linkedin.com/in/alan-silva-341600196){.uri})
+    -   Alan da Silva
+        ([linkedIn](https://www.linkedin.com/in/alan-silva-341600196){.uri})
 
-• Lucca Nielsen
-([linkedIn](https://www.linkedin.com/in/lucca-nielsen-53b2a9181/){.uri})
+    -   Lucca Nielsen
+        ([linkedIn](https://www.linkedin.com/in/lucca-nielsen-53b2a9181/){.uri})
 
-• Natan Sant Anna Borges
-([linkedIn](https://www.linkedin.com/in/natan-borges-6990b81a4/){.uri})
+    -   Natan Sant Anna Borges
+        ([linkedIn](https://www.linkedin.com/in/natan-borges-6990b81a4/){.uri})
 
 > #### (2024) Aprendendo Visualização de Dados - Linkedin Learning
 
-Curso assíncrono disponível na plataforma LinkedIn Learning.
-
-Acesse: <https://bit.ly/LL_AprendendoDataviz>
+-   Curso assíncrono disponível na plataforma LinkedIn Learning. Para
+    saber mais, acesse: <https://bit.ly/LL_AprendendoDataviz>
 
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
