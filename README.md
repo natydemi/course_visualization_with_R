@@ -12,20 +12,23 @@ editor_options:
 
 ### \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-Variações deste curso são lecionadas em diferentes programas e
-plataformas desde 2022, incluindo cursos de MBA como a pós-graduação em
-Ciência de Dados do Insper, de forma assíncrona na plataforma LinkedIn
-Learning, e mais recentemente no curso de verão do IME-USP. A partir
-deste último, passei a organizar os principais materiais neste
-repositório:
+### Apresentação
 
--   Palestra sobre Comunicação com Dados :
+Este repositório concentra materiais relacionados a uma série de cursos
+sobre Visualização de Dados com R, lecionados em diferentes programas e
+plataformas desde 2022. Isso inclui cursos de MBA como a pós-graduação
+em Ciência de Dados do Insper, de forma assíncrona na plataforma
+LinkedIn Learning, e, mais recentemente, no curso de verão do IME-USP. A
+partir deste último, passei a organizar os principais materiais neste
+repositório. Seguem alguns dos principais materiais relacionados:
+
+-   Conteúdos do curso "Comunicação com Dados":
     <https://bit.ly/comunicacaoComDados_sneakPeak_>
 
--   Aula sobre Visualização de dados + ggplot2 :
-    <https://bit.ly/curso_datavizR_slides>
+-   Slides das aulas "Visualização de dados com R e ggplot2" :
+    [https://bit.ly/curso_datavizR_slides](#0){.uri}
 
--   Repositório de boas-práticas de design:
+-   Repositório de exemplos com boas-práticas de design:
     <https://bit.ly/LL_dataviz_exemplos>
 
 -   Meetup sobre Comunicação efetiva com dados:
@@ -250,4 +253,8 @@ Acesse: <https://bit.ly/LL_AprendendoDataviz>
 
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-Para saber mais, entre em contato: <https://bit.ly/NathaliaDemetrio_DM>
+Contato
+
+Para saber mais: <https://bit.ly/NathaliaDemetrio_DM>
+
+Link deste repo: <https://bit.ly/curso_datavizR_git>
