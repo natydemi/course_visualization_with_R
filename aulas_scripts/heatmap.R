@@ -3,6 +3,10 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
+#este script foi criado compartilhando os códigos deste link:
+# https://www.royfrancis.com/a-guide-to-elegant-tiled-heatmaps-in-r-2019/
+#e fazendo perguntas para o Gemini
+
 # Criar um conjunto de dados de exemplo com mais informações
 set.seed(123) # Para reprodutibilidade
 anos <- 1928:2003

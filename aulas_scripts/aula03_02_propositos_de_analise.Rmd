@@ -1,6 +1,7 @@
 ---
-title: "Visualização de Dados – Propósitos de Visualização"
-subtitle: "dados: gapminder"
+title: "Visualização de Dados"
+subtitle: "Propósitos de Visualização \n dados: gapminder"
+author: "Nathália Demetrio"
 output:
   html_document:
     toc: true

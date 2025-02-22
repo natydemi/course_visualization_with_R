@@ -1,0 +1,744 @@
+---
+title: "Visualização de Dados"
+subtitle: "Boas-Práticas de Visualização"
+author: "Nathália Demetrio"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r class.source = 'fold-show'}
+library(tidyverse)
+library(dados)
+library(patchwork)
+```
+
+# Introdução
+
+Este arquivo apresenta exemplos de visualizações tendo como base/inspiração os gráficos do livro "[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)" do Claus O. Wilke. 
+
+
+# Variáveis Discretas
+
+## Rótulos longos? Use barras horizontais​
+
+
+```{r eval=FALSE, include=FALSE}
+dados::pixar_avalicao_publico %>% skimr::skim()
+```
+
+```{r eval=FALSE, include=FALSE}
+# nota_rotten_tomatoes
+# nota_metacritic
+# nota_critics_choice
+
+dados::pixar_avalicao_publico %>%  
+  #filter(!is.na(nota_critics_choice)) %>% 
+  #janitor::tabyl(nota_cinema_score) %>% 
+  mutate(filme_nchar = str_length(filme)) %>% 
+  ggplot(aes(nota_metacritic, fct_reorder(filme,filme_nchar))) +
+  geom_col()
+```
+
+
+
+
+```{r}
+dados::pixar_bilheteria %>%  
+  left_join(dados::pixar_filmes) %>% 
+  mutate(filme_nchar = str_length(filme)) %>% 
+  filter(filme_nchar < 20, filme_nchar > 4) %>% 
+  filter(classificacao_indicativa == "Orientação parental sugerida") %>% 
+  filter(filme != "Os Incríveis 2") %>% 
+  ggplot(aes(fct_reorder(filme, -bilheteria_mundial), bilheteria_mundial)) +
+    geom_col(fill = "lightgrey") +
+    cowplot::theme_minimal_hgrid(13) +
+    scale_y_continuous(expand = c(0,0), 
+                       limits = c(0,1100000000),
+                       labels = scales::label_dollar(scale_cut = scales::cut_short_scale())) +
+    labs(title = "Bilheteria mundial - animações Pixar",
+           subtitle = "",
+           x = NULL,
+           y = "",
+           fill = NULL) +
+    theme(axis.line.x = element_line(size = 0.7, color = "darkgrey"),
+          panel.grid.major.x = element_blank(),
+          axis.text.x = element_text(angle = 45, hjust=1)) 
+```
+
+
+
+```{r}
+dados::pixar_bilheteria %>%  
+  left_join(dados::pixar_filmes) %>% 
+  mutate(filme_nchar = str_length(filme)) %>% 
+  filter(filme_nchar < 20, filme_nchar > 4) %>% 
+  filter(classificacao_indicativa == "Orientação parental sugerida") %>% 
+  filter(filme != "Os Incríveis 2") %>% 
+  ggplot(aes(fct_reorder(filme, bilheteria_mundial), bilheteria_mundial)) +
+    geom_col(fill = "lightgrey") +
+    cowplot::theme_minimal_vgrid(13) +
+  coord_flip() +
+    scale_y_continuous(expand = c(0,0), 
+                       limits = c(0,1100000000),
+                       labels = scales::label_dollar(scale_cut = scales::cut_short_scale())) +
+    labs(title = "Bilheteria mundial - animações Pixar",
+           subtitle = "",
+           x = NULL,
+           y = "",
+           fill = NULL) +
+    theme(axis.line.y = element_line(size = 0.7, color = "darkgrey"),
+          panel.grid.major.y = element_blank()) 
+```
+
+
+
+## Variável Nominal? Ordene pelos resultados
+
+
+```{r}
+dados::pixar_bilheteria %>%  
+  left_join(dados::pixar_filmes) %>% 
+  mutate(filme_nchar = str_length(filme)) %>% 
+  filter(filme_nchar < 20, filme_nchar > 4) %>% 
+  filter(classificacao_indicativa == "Orientação parental sugerida") %>% 
+  filter(filme != "Os Incríveis 2") %>% 
+  ggplot(aes(fct_rev(filme), bilheteria_mundial)) +
+    geom_col(fill = "lightgrey") +
+    cowplot::theme_minimal_vgrid(13) +
+  coord_flip() +
+    scale_y_continuous(expand = c(0,0), 
+                       limits = c(0,1100000000),
+                       labels = scales::label_dollar(scale_cut = scales::cut_short_scale())) +
+    labs(title = "Bilheteria mundial - animações Pixar",
+           subtitle = "",
+           x = NULL,
+           y = "",
+           fill = NULL) +
+    theme(axis.line.y = element_line(size = 0.7, color = "darkgrey"),
+          panel.grid.major.y = element_blank()) 
+```
+
+## Variável Ordinal? Respeite a ordem dos rótulos​
+
+```{r}
+dados::questionario %>%
+  drop_na(idade) %>% 
+  mutate(idade_faixas = case_when(
+    idade <= 15 ~ "< 15",
+    between(idade, 15, 24) ~ "15 a 24",
+    between(idade, 25, 34) ~ "25 a 34",
+    between(idade, 35, 44) ~ "35 a 44",
+    between(idade, 45, 54) ~ "45 a 54",
+    between(idade, 55, 64) ~ "55 a 64",
+    between(idade, 65, 74) ~ "65 a 74",
+    idade >= 75 ~ "> 74",
+    .default = "other"
+  )) %>% 
+  #janitor::tabyl(idade, idade_faixas) %>% 
+  mutate(idade_faixas = forcats::fct_infreq(idade_faixas)) %>% 
+  ggplot(aes(idade_faixas)) + 
+  geom_bar(fill = "lightgrey") +
+  cowplot::theme_minimal_hgrid(13) +
+  scale_y_continuous(expand = c(0,0)) +
+  labs(title = "Idade dos respondentes do questionário GSS",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+  theme(axis.line.x = element_line(size = 0.7, color = "darkgrey")) 
+
+```
+
+```{r}
+dados::questionario %>%
+  drop_na(idade) %>% 
+  mutate(idade_faixas = case_when(
+    idade <= 15 ~ "< 15",
+    between(idade, 15, 24) ~ "15 a 24",
+    between(idade, 25, 34) ~ "25 a 34",
+    between(idade, 35, 44) ~ "35 a 44",
+    between(idade, 45, 54) ~ "45 a 54",
+    between(idade, 55, 64) ~ "55 a 64",
+    between(idade, 65, 74) ~ "65 a 74",
+    idade >= 75 ~ "> 74",
+    .default = "other"
+  )) %>% 
+  mutate(idade_faixas = factor(idade_faixas, ordered = TRUE)) %>% 
+  mutate(idade_faixas = forcats::fct_shift(idade_faixas)) %>% 
+  # janitor::tabyl(idade_faixas)
+  ggplot(aes(idade_faixas)) + 
+  geom_bar(fill = "lightgrey") +
+  cowplot::theme_minimal_hgrid(13) +
+  scale_y_continuous(expand = c(0,0)) +
+  labs(title = "Idade dos respondentes do questionário GSS",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+  theme(axis.line.x = element_line(size = 0.7, color = "darkgrey")) 
+
+```
+
+## Evite gráficos truncados, inicie no zero​
+
+```{r}
+dados::dados_gapminder %>% 
+  filter(ano == "2007", continente == "Europa") %>% 
+  slice_max(pib_per_capita, n = 3) %>% 
+  mutate(pais = forcats::fct_relevel(pais, c("Noruega", "Irlanda", "Suíça"))) %>% 
+  ggplot(aes(pais, pib_per_capita)) +
+    geom_col(fill = "lightgrey") +
+  cowplot::theme_minimal_hgrid(13) +
+  scale_y_continuous(expand = c(0,0), 
+                     labels = scales::label_dollar(scale_cut = scales::cut_short_scale())) +
+  coord_cartesian(ylim = c(35000,NA)) +
+  labs(title = "Gapminder: top 3 maiores PIB's da Europa em 2007",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+  theme(axis.line.x = element_line(size = 0.7, color = "darkgrey")) 
+
+```
+
+```{r}
+dados::dados_gapminder %>% 
+  filter(ano == "2007", continente == "Europa") %>% 
+  slice_max(pib_per_capita, n = 3) %>% 
+  mutate(pais = forcats::fct_relevel(pais, c("Noruega", "Irlanda", "Suíça"))) %>% 
+  # janitor::tabyl(pais)
+  ggplot(aes(pais, pib_per_capita)) +
+    geom_col(fill = "lightgrey") +
+  cowplot::theme_minimal_hgrid(13) +
+  scale_y_continuous(expand = c(0,0), 
+                     labels = scales::label_dollar(scale_cut = scales::cut_short_scale())) +
+  labs(title = "Gapminder: top 3 maiores PIB's da Europa em 2007",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+  theme(axis.line.x = element_line(size = 0.7, color = "darkgrey")) 
+
+```
+
+## Considere o gráfico Lollipop como alternativa​
+
+```{r}
+gapminder::gapminder_unfiltered %>% 
+  filter(year == 2007) %>% 
+  filter(continent == "Europe") %>% 
+  left_join(dslabs::gapminder %>% filter(year ==2007) %>%  select(country,region)) %>% 
+  filter(region == "Northern Europe") %>% 
+  drop_na() %>% 
+  mutate(country = forcats::fct_reorder(country, gdpPercap)) %>% 
+  ggplot(aes(gdpPercap, country)) +
+  geom_col(fill = "lightgrey") +
+  #facet_wrap(. ~ region) +
+  cowplot::theme_minimal_vgrid(13) +
+  scale_x_continuous(expand = c(0,0), 
+                    limits = c(0,50000),
+                     labels = scales::label_dollar(scale_cut = scales::cut_short_scale())) +
+  labs(title = "Gapminder: PIB, norte da Europa, 2007",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+  theme(axis.line.x = element_line(size = 0.7, color = "darkgrey"),
+        panel.grid.major.x = element_blank()) 
+
+
+```
+
+```{r}
+gapminder::gapminder_unfiltered %>% 
+  filter(year == 2007) %>% 
+  filter(continent == "Europe") %>% 
+  left_join(dslabs::gapminder %>% filter(year ==2007) %>%  select(country,region)) %>% 
+  filter(region == "Northern Europe") %>% 
+  drop_na() %>% 
+  mutate(country = forcats::fct_reorder(country, gdpPercap)) %>% 
+  ggplot(aes(gdpPercap, country)) +
+  geom_segment(aes(x=0, xend=gdpPercap, yend=country), color = "lightgrey", linetype = 2) +
+  geom_point(color = "grey", size = 2.5) +
+  #facet_wrap(. ~ region) +
+  cowplot::theme_minimal_vgrid(13) +
+  scale_x_continuous(expand = c(0,0), 
+                     labels = scales::label_dollar(scale_cut = scales::cut_short_scale())) +
+  coord_cartesian(xlim = c(15000,50000)) +
+  labs(title = "Gapminder: PIB, norte da Europa, 2007",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+  theme(axis.line.x = element_line(size = 0.7, color = "darkgrey"),
+        panel.grid.major.x = element_blank()) 
+
+  
+
+```
+
+
+
+
+## Muitas categorias? Considere agrupa-las
+
+```{r}
+dados::voos %>% 
+  left_join(dados::companhias_aereas) %>% 
+  janitor::tabyl(nome) %>% 
+  arrange(-n)
+```
+
+
+```{r}
+dados::voos %>% 
+  left_join(dados::companhias_aereas) %>% 
+   mutate(nome = fct_infreq(nome)) %>%
+  ggplot(aes(fct_rev(nome))) +
+    geom_bar(fill = "lightgrey") +
+    coord_flip() +
+    cowplot::theme_minimal_vgrid(13) +
+    scale_y_continuous(expand = c(0,0),
+                       labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+    labs(title = "Nº de voos partindo de NY (2013)",
+             subtitle = "",
+             x = NULL,
+             y = "",
+             fill = NULL) +
+    theme(axis.line.y = element_line(size = 0.7, color = "darkgrey"),
+          panel.grid.major.y = element_blank()) 
+```
+
+## Use as cores de maneira estratégica ​
+
+```{r}
+dados::voos %>% 
+  left_join(dados::companhias_aereas) %>% 
+   mutate(nome = fct_infreq(nome),
+          nome = fct_lump_n(nome, 7),
+          highlight = fct_other(nome,
+                                keep = "Other", other_level = "Named")) %>%
+  ggplot(aes(fct_rev(nome), fill = highlight)) +
+    geom_bar() +
+    coord_flip() +
+    cowplot::theme_minimal_vgrid(13) +
+    scale_y_continuous(expand = c(0,0),
+                       labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+  scale_fill_manual(values = c("maroon4", "lightgrey"), guide = "none") +
+    labs(title = "Nº de voos partindo de NY (2013)",
+             subtitle = "",
+             x = NULL,
+             y = "",
+             fill = NULL) +
+    theme(axis.line.y = element_line(size = 0.7, color = "darkgrey"),
+          panel.grid.major.y = element_blank()) 
+
+```
+
+## Evite o 3D
+
+```{r}
+plot3D::hist3D (x = 1:5, y = 1:4, z = VADeaths,
+        bty = "g", phi = 20,  theta = -60, 
+        xlab = "", ylab = "", zlab = "", main = "Dados VADeaths",
+        col = "maroon4", border = "magenta4", shade = 0.8,
+        ticktype = "detailed", space = 0.1, d = 2, cex.axis = 1e-9)
+# Use text3D to label x axis
+ plot3D::text3D(x = 1:5, y = rep(0.5, 5), z = rep(3, 5),
+       labels = rownames(VADeaths),
+       add = TRUE, adj = 0, cex = 0.7)
+# Use text3D to label y axis
+ plot3D::text3D(x = rep(1, 4),   y = 1:4, z = rep(0, 4),
+       labels  = colnames(VADeaths),
+       add = TRUE, adj = 1, cex = 0.7) 
+ # Use text3D to label y axis
+ plot3D::text3D(x = rep(0, 3), y = rep(5, 3), z = c(20,40,60),
+                labels  = c("20","40","60"),
+                add = TRUE, adj = 0, cex = 0.7) 
+```
+
+
+
+
+
+```{r}
+VADeaths_tidy <- VADeaths %>% 
+  as_data_frame() %>% 
+  rownames_to_column()
+
+VADeaths_tidy$rowname <- row.names(VADeaths)
+
+VADeaths_tidy %>% 
+  pivot_longer(-rowname) %>% 
+  ggplot(aes(rowname, value)) + 
+  geom_col(fill = "maroon4") + 
+  facet_wrap(. ~  name, ncol = 2) +
+  labs(title = "Dados VADeaths",
+             subtitle = "",
+             x = NULL,
+             y = "",
+             fill = NULL) +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+## Cuidado no uso dos gráficos de pizza!​
+
+```{r}
+# create 3 data frame:
+data1 <- data.frame( name=LETTERS[1:5], value=c(17,18,20,22,24) )
+data2 <- data.frame( name=LETTERS[1:5], value=c(20,18,21,20,20) )
+data3 <- data.frame( name=LETTERS[1:5], value=c(24,23,21,19,18) )
+
+# Plot
+plot_pie <- function(data, vec){
+
+ggplot(data, aes(x="name", y=value, fill=name)) +
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y", start=0, direction = -1) +
+  viridis::scale_fill_viridis(discrete = TRUE,  direction=-1, option = "inferno") + 
+  geom_text(aes(y = vec, label = rev(name), size=4, color=c( "white", rep("black", 4)))) +
+  scale_color_manual(values=c("black", "white")) +
+  theme_minimal() +
+  theme(
+    legend.position="none",
+    plot.title = element_text(size=14),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    legend.margin=unit(0, "null")
+  ) +
+  xlab("") +
+  ylab("")
+}
+
+a <- plot_pie(data1, c(10,35,55,75,93)) + ggtitle("Exemplo de ressalvas do site data-to-viz")
+b <- plot_pie(data2, c(10,35,53,75,93))
+c <- plot_pie(data3, c(10,29,50,75,93))
+
+a + b + c
+```
+
+```{r}
+plot_bar <- function(data){
+  ggplot(data, aes(x=name, y=value, fill=name)) +
+    geom_bar( stat = "identity") +
+    viridis::scale_fill_viridis(discrete = TRUE, direction=-1, option = "inferno") + 
+    scale_color_manual(values=c("black", "white")) +
+    theme_minimal() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=14),
+      panel.grid = element_blank(),
+    ) +
+    ylim(0,25) +
+    xlab("") +
+    ylab("")
+}
+
+# Make 3 barplots
+a <- plot_bar(data1) + ggtitle("Exemplo de ressalvas do site data-to-viz")
+b <- plot_bar(data2)
+c <- plot_bar(data3)
+
+# Put them together with patchwork
+a +  b + c
+```
+
+
+# Variáveis Contínuas
+
+## Sobreposição? 
+
+### Adicione um ruído aleatório​
+
+```{r}
+ggridges::lincoln_weather %>% 
+  janitor::clean_names() %>% 
+  mutate(mean_temperature_c = (mean_temperature_f - 32)/1.8) %>% 
+  mutate(month_short = month(as_date(cst), label = TRUE)) %>% 
+  # glimpse() 
+  ggplot(aes(x = month_short, y = mean_temperature_c)) +
+  geom_point(size = 1.2) +
+  theme_classic() +
+    scale_y_continuous(label = scales::label_number(suffix = "º")) +
+    labs(title = "Temperatura média (Celsius) da Cidade de Lincoln, EUA",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+    theme(panel.grid.major.y = element_blank()) 
+```
+
+
+```{r}
+ggridges::lincoln_weather %>% 
+  janitor::clean_names() %>% 
+  mutate(mean_temperature_c = (mean_temperature_f - 32)/1.8) %>% 
+  mutate(month_short = month(as_date(cst), label = TRUE)) %>% 
+  # glimpse() 
+  ggplot(aes(x = month_short, y = mean_temperature_c)) +
+  geom_violin(fill = "lightgrey", color = NA) +
+  ggforce::geom_sina(size = 1.2) +
+  # geom_point(size = 1.5, position = position_jitter( width = 0.15, height = 0)) +
+  theme_classic() +
+    scale_y_continuous(label = scales::label_number(suffix = "º")) +
+    labs(title = "Temperatura média (Celsius) da Cidade de Lincoln, EUA",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+    theme(panel.grid.major.y = element_blank()) 
+```
+
+## Adicione também transparência
+
+
+```{r eval=FALSE, include=FALSE}
+mpg %>% 
+  mutate(drv = case_when(
+    drv == "f" ~ "front-wheel drive", 
+    drv == "r" ~ "rear wheel drive", 
+    drv == "4" ~ "4wd", 
+    )) %>% 
+  ggplot(aes(cty, displ, color = drv)) +
+  geom_point(size = 1.5) +
+  #theme_classic() +
+  theme(panel.grid.major.y = element_blank(),
+          legend.position = c(.8, .8)) 
+
+```
+
+```{r}
+dados::milhas  %>% 
+    mutate(tracao = case_when(
+    tracao == "d" ~ "dianteira", 
+    tracao == "t" ~ "traseira", 
+    tracao == "4" ~ "4x4", 
+    )) %>% 
+  ggplot(aes(cidade, cilindrada, color = tracao)) +
+  geom_point(size = 2.5) +
+  #geom_point(size = 1.5, alpha = 0.4, position = position_jitter( width = 0.15, height = 0)) +
+  scale_color_viridis_d(name = 'tipo de tração:', option = 'viridis') + 
+  theme_classic(base_size = 13) +
+  labs(title = "Combustível automotivo: milhas por galão vs. cilindrada",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL,
+        ) +
+    theme(panel.grid.major.y = element_blank(),
+          legend.position = c(.8, .8)) 
+```
+
+
+```{r}
+dados::milhas  %>% 
+    mutate(tracao = case_when(
+    tracao == "d" ~ "dianteira", 
+    tracao == "t" ~ "traseira", 
+    tracao == "4" ~ "4x4", 
+    )) %>% 
+  ggplot(aes(cidade, cilindrada, color = tracao)) +
+  #geom_point(size = 1.5) +
+  geom_point(size = 2.5, alpha = 0.5, position = position_jitter(width = 0.1, height = 0.1)) +
+  scale_color_viridis_d(name = 'tipo de tração:', option = 'viridis') + 
+  theme_classic(base_size = 13) +
+  labs(title = "Combustível automotivo: milhas por galão vs. cilindrada",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL,
+        ) +
+    theme(panel.grid.major.y = element_blank(),
+          legend.position = c(.8, .8)) 
+```
+
+
+
+## Eixos são suscetíveis a distorções 
+
+### Esticar vs. comprimir
+
+
+```{r warning=FALSE}
+p1 <- ggridges::lincoln_weather %>% 
+  janitor::clean_names() %>% 
+  mutate(date = lubridate::as_date(cst)) %>% 
+  ggplot(aes(date, wind_dir_degrees)) + 
+  stat_smooth(method = 'gam', se = FALSE, color = "darkgray") +
+  theme_classic(base_size = 13) +
+  labs(title = "", subtitle = "", x = NULL, y = NULL, fill = NULL) +
+    theme(panel.grid.major.y = element_blank(),
+          legend.position = c(.8, .8)) 
+
+(p1 + scale_x_date(date_labels = '%b') + ggtitle(label = "",subtitle = '') +
+    p1 + plot_layout(ncol = 2, widths = c(1, 3))) / 
+  (p1 + plot_layout(nrow = , heights = c(3, 0))) +
+   plot_annotation(title = 'Graus de direção do vento, Cidade de Lincoln, EUA')
+
+```
+
+### Zoom in vs. Zoom out
+
+```{r}
+dados::bebes %>% 
+  group_by(ano) %>% 
+  summarise(n = sum(n)) %>% 
+  filter(ano >= 1947) %>% 
+  ggplot(aes(ano , n)) +
+    coord_cartesian(ylim = c(2900000,NA)) +
+    geom_area(fill = "grey", alpha = 0.8) +
+    theme_classic(base_size = 13) +
+    scale_y_continuous(expand = c(0,0),
+                       label = scales::label_number(scale_cut = scales::cut_short_scale())) +
+    scale_x_continuous(expand = c(0,.4), breaks = seq(1947, 2017, 10)) +
+    labs(title = "Quantidade de bebês dos EUA reportados pela SSA", 
+         subtitle = "", x = NULL, y = NULL, fill = NULL) 
+```
+
+```{r}
+dados::bebes %>% 
+  group_by(ano) %>% 
+  summarise(n = sum(n)) %>% 
+  filter(ano >= 1947) %>% 
+  ggplot(aes(ano , n)) +
+    #coord_cartesian(ylim = c(3000000,NA)) +
+    geom_area(fill = "grey", alpha = 0.8) +
+    theme_classic(base_size = 13) +
+    scale_y_continuous(expand = c(0,0),
+                       label = scales::label_number(scale_cut = scales::cut_short_scale())) +
+    scale_x_continuous(expand = c(0,.4), breaks = seq(1947, 2017, 10)) +
+    labs(title = "Quantidade de bebês dos EUA reportados pela SSA", 
+         subtitle = "", x = NULL, y = NULL, fill = NULL) 
+```
+
+
+## Torne os eixos comparáveis ​
+
+```{r}
+gapminder::gapminder_unfiltered %>% 
+  left_join(dslabs::gapminder %>% filter(year == 2007) %>%  select(country,region)) %>% 
+  filter(region %in% c("South America")) %>% 
+  filter(year >= 1967) %>% 
+  ggplot(aes(year, gdpPercap)) +
+  geom_line(color = "darkgrey") +
+  scale_y_continuous(labels = scales::label_number()) +
+  facet_wrap(. ~ country, scales = "free_y", ncol = 3) +
+  theme_minimal() +
+    labs(title = "Gapminder: PIB dos países da América do Sul, entre 1967 e 2007",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+  theme(axis.line.x = element_line(size = 0.7, color = "darkgrey"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()) 
+```
+
+
+```{r}
+gapminder::gapminder_unfiltered %>% 
+  left_join(dslabs::gapminder %>% filter(year == 2007) %>%  select(country,region)) %>% 
+  filter(region %in% c("South America")) %>% 
+  filter(year >= 1967) %>% 
+  ggplot(aes(year, gdpPercap)) +
+  geom_line(color = "darkgrey") +
+  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale()),
+                     n.breaks = 5) +
+  facet_wrap(. ~ country, ncol = 3) +
+  #facet_wrap(. ~ country, scales = "free_y") +
+  theme_minimal() +
+    labs(title = "Gapminder: PIB dos países da América do Sul, entre 1967 e 2007",
+             subtitle = "",
+             x = NULL,
+             y = NULL,
+             fill = NULL) +
+  theme(axis.line.x = element_line(size = 0.7, color = "darkgrey"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()) 
+```
+
+
+# Design 
+
+## Evite usar cores indistintamente​ 
+
+```{r include=FALSE}
+Brasil.Estados <- geobr::read_state(code_state = "all",year=2019)
+
+#Brasil.Estados
+#names(Brasil.Estados)
+
+ggplot(Brasil.Estados) + 
+  geom_sf(aes(fill = name_state))
+```
+
+```{r include=FALSE}
+#devtools::install_github("rpradosiqueira/brazilmaps") 
+
+ex <- brazilmaps::get_brmap("Region")
+ex <- brazilmaps::get_brmap("State")
+
+#devtools::install_github("abjur/abjData")
+
+pnud_minima <- abjData::pnud_muni %>% 
+  filter(ano == 2010) %>% 
+  select(cod_uf = uf, 
+         cod_muni = codmun7, 
+         starts_with("idh"))
+
+pnud_minima_estado <- pnud_minima %>% 
+  group_by(cod_uf) %>% 
+  summarise(idh = mean(idhm))
+```
+
+
+
+```{r include=FALSE}
+uf_map <- brazilmaps::get_brmap("State") %>% 
+  inner_join(pnud_minima_estado, c("State" = "cod_uf"))
+
+uf_map %>% 
+  mutate(idh = cut(idh, c(0, 0.6, 0.65, 0.7, 0.75, 1.0))) %>% 
+  ggplot() + 
+  geom_sf(aes(fill = idh), color = "white") +
+  cowplot::theme_minimal_grid(13)
+```
+
+
+
+```{r include=FALSE}
+muni_map <- brazilmaps::get_brmap("City") %>% 
+  left_join(pnud_minima, c("City" = "cod_muni"))
+
+muni_map %>% 
+  ggplot() +
+  geom_sf(aes(fill = idhm, colour = idhm))
+```
+
+
+
+```{r}
+muni_map %>% 
+  ggplot() +
+  geom_sf(aes(fill = idhm, colour = idhm), size = 0.1) +
+  geom_sf(data = brazilmaps::get_brmap("State"), fill = "transparent",
+          colour = "white", size = 0.5) +
+  scale_color_gradientn(
+    name = "Índice de \nDesenvolvimento \nHumano \ndos municípios \nbrasileiros", 
+    colours = rainbow(6), labels = scales::percent) +
+  scale_fill_gradientn(guide = FALSE, colours = rainbow(6)) +
+  theme(panel.grid = element_line(colour = "transparent"),
+        panel.background = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "left")
+
+```
+

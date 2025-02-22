@@ -6,15 +6,43 @@ editor_options:
 
 # Introdução à Visualização de Dados com R
 
-### Professora: Nathália Demetrio Vasconcelos Moura
+### Autora: Nathália Demetrio Vasconcelos Moura
 
 ### Contato: <https://bit.ly/NathaliaDemetrio>
 
 ### \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-> Página do Programa De Verão: <https://www.ime.usp.br/verao/index.php>
+Variações deste curso são lecionadas em diferentes programas e
+plataformas desde 2022, incluindo cursos de MBA como a pós-graduação em
+Ciência de Dados do Insper, de forma assíncrona na plataforma LinkedIn
+Learning, e mais recentemente no curso de verão do IME-USP. A partir
+deste último, passei a organizar os principais materiais neste
+repositório:
 
-#### 54º Programa De Verão (2025)
+-   Palestra sobre Comunicação com Dados :
+    <https://bit.ly/comunicacaoComDados_sneakPeak_>
+
+-   Aula sobre Visualização de dados + ggplot2 :
+    <https://bit.ly/curso_datavizR_slides>
+
+-   Repositório de boas-práticas de design:
+    <https://bit.ly/LL_dataviz_exemplos>
+
+-   Meetup sobre Comunicação efetiva com dados:
+    <https://bit.ly/comunicacao_com_dados>
+
+Para saber mais, entre em contato: <https://bit.ly/NathaliaDemetrio_DM>
+
+### \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+### Edições
+
+Curso oferecido anualmente pelo Programa de Verão do IME-USP. Para mais
+informações, acesse: <https://bit.ly/cursoVeraoIMEUSP2022>
+
+> #### (2025) Visualização de Dados com R - EaD do Programa De Verão do IME-USP
+
+54º Programa De Verão do IME-USP
 
 Ementa: <https://www.ime.usp.br/verao/index.php/turmas/descricao/520>
 
@@ -31,6 +59,12 @@ Pessoas monitoras:
 
 • Natan Sant Anna Borges
 ([linkedIn](https://www.linkedin.com/in/natan-borges-6990b81a4/){.uri})
+
+> #### (2024) Aprendendo Visualização de Dados - Linkedin Learning
+
+Curso assíncrono disponível na plataforma LinkedIn Learning.
+
+Acesse: <https://bit.ly/LL_AprendendoDataviz>
 
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
