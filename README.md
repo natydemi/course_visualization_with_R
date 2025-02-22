@@ -253,8 +253,11 @@ Para saber mais, entre em contato: <https://bit.ly/NathaliaDemetrio_DM>
 
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-Contato
+### Contato
 
-Para saber mais: <https://bit.ly/NathaliaDemetrio_DM>
+Espero que estes materiais inspirem suas explorações na visualização de
+dados. Para dúvidas, sugestões ou para saber mais sobre meus workshops e
+cursos personalizados, entre em contato:
+<https://bit.ly/NathaliaDemetrio_DM>
 
 Link deste repo: <https://bit.ly/curso_datavizR_git>
