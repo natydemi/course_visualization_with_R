@@ -255,7 +255,7 @@ Para saber mais, entre em contato: <https://bit.ly/NathaliaDemetrio_DM>
 
 ### Contato
 
-Espero que estes materiais inspirem suas explorações na visualização de
+Espero que estes materiais inspirem suas explorações no munda da visualização de
 dados. Para dúvidas, sugestões ou para saber mais sobre meus workshops e
 cursos personalizados, entre em contato:
 <https://bit.ly/NathaliaDemetrio_DM>
