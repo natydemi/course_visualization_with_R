@@ -44,7 +44,7 @@ p3
 p1 + 
   p2 + 
   p3 +
-  patchwork::plot_annotation(title = "Gráficos de Barra")  # Adiciona um título geral à composição
+  patchwork::plot_annotation(title = "Gráficos de Barra – variações")  # Adiciona um título geral à composição
 
 # Outra disposição dos gráficos usando patchwork
 # (p1 + p2) são organizados lado a lado na primeira linha

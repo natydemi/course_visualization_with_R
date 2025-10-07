@@ -32,7 +32,7 @@ gapminder |>
   ggplot(aes(x = pib_per_capita, y = expectativa_de_vida))  +
   geom_point()
 
-#note que existem as alternativas
+#note que existem escritas alternativas para obter o mesmo resultado 
 # ggplot(data = gapminder, 
 #        aes(x = pib_per_capita, y = expectativa_de_vida)) + geom_point()
 # ggplot(data = gapminder, 
