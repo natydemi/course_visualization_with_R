@@ -18,9 +18,10 @@ Este repositório concentra materiais relacionados a uma série de cursos
 sobre Visualização de Dados com R, lecionados em diferentes programas e
 plataformas desde 2022. Isso inclui cursos de MBA como a pós-graduação
 em Ciência de Dados do Insper, de forma assíncrona na plataforma
-LinkedIn Learning, e o curso de verão do IME-USP "Princípios de Visualização de Dados com R (EaD)". 
-A partir deste último, passei a organizar os principais materiais neste
-repositório. Seguem alguns dos principais materiais relacionados:
+LinkedIn Learning, e o curso de verão do IME-USP "Princípios de
+Visualização de Dados com R (EaD)". A partir deste último, passei a
+organizar os principais materiais neste repositório. Seguem alguns dos
+principais materiais relacionados:
 
 -   Conteúdos do curso "Comunicação com Dados":
     <https://bit.ly/comunicacaoComDados_sneakPeak_>
@@ -34,7 +35,8 @@ repositório. Seguem alguns dos principais materiais relacionados:
 -   Palestra sobre Comunicação efetiva com dados no Meetup do
     Itaú-Unibanco: <https://bit.ly/comunicacao_com_dados>
 
-Para saber mais sobre cursos e workshops relacionados, entre em contato: <https://bit.ly/NathaliaDemetrio_DM>
+Para saber mais sobre cursos e workshops relacionados, entre em contato:
+<https://bit.ly/NathaliaDemetrio_DM>
 
 ### \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
@@ -43,23 +45,27 @@ Para saber mais sobre cursos e workshops relacionados, entre em contato: <https:
 > #### (2025) Visualização de Dados com R - EaD do Programa De Verão do IME-USP
 
 # 55º Programa De Verão (2026)
-# Ementa: https://www.ime.usp.br/verao/index.php/turmas/descricao/550
-# Pessoas monitoras: 
-	• Agatha Priscila Alves Nogueira ([linkedIn](https://www.linkedin.com/in/agatha-nogueira/){.uri})
-	• Alan da Silva ([linkedIn](https://www.linkedin.com/in/alan-silva-341600196){.uri})
-	• Gabriela Aimee Scarpini Silva (https://www.linkedin.com/in/gabriela-scarpini/)
-	• Izadora de Geus Gomes (www.linkedin.com/in/izadora-de-geus-monteiro-gomes-496117268)
+
+# Ementa: <https://www.ime.usp.br/verao/index.php/turmas/descricao/550>
+
+# Pessoas monitoras:
+• Agatha Priscila Alves Nogueira ([linkedIn](https://www.linkedin.com/in/agatha-nogueira/){.uri})
+• Alan da Silva ([linkedIn](https://www.linkedin.com/in/alan-silva-341600196){.uri})
+• Gabriela Aimee Scarpini Silva (https://www.linkedin.com/in/gabriela-scarpini/)
+• Izadora de Geus Gomes (www.linkedin.com/in/izadora-de-geus-monteiro-gomes-496117268)
 
 
 # 54º Programa De Verão (2025)
-# Ementa: https://www.ime.usp.br/verao/index.php/turmas/descricao/520
-# Pessoas monitoras: 
-	• Agatha Priscila Alves Nogueira ([linkedIn](https://www.linkedin.com/in/agatha-nogueira/){.uri})
-	• Alan da Silva ([linkedIn](https://www.linkedin.com/in/alan-silva-341600196){.uri})
-	• Lucca Nielsen ([linkedIn](https://www.linkedin.com/in/lucca-nielsen-53b2a9181/){.uri})
-	• Natan Sant Anna Borges ([linkedIn](https://www.linkedin.com/in/natan-borges-6990b81a4/){.uri})
+# Ementa: <https://www.ime.usp.br/verao/index.php/turmas/descricao/520>
 
+# Pessoas monitoras:
 
+```         
+• Agatha Priscila Alves Nogueira ([linkedIn](https://www.linkedin.com/in/agatha-nogueira/){.uri})
+• Alan da Silva ([linkedIn](https://www.linkedin.com/in/alan-silva-341600196){.uri})
+• Lucca Nielsen ([linkedIn](https://www.linkedin.com/in/lucca-nielsen-53b2a9181/){.uri})
+• Natan Sant Anna Borges ([linkedIn](https://www.linkedin.com/in/natan-borges-6990b81a4/){.uri})
+```
 
 > #### (2024) Aprendendo Visualização de Dados - Linkedin Learning
 
@@ -252,9 +258,9 @@ Para saber mais sobre cursos e workshops relacionados, entre em contato: <https:
 
 ### Contato
 
-Espero que estes materiais inspirem suas explorações no mundo da visualização de
-dados. Para dúvidas, sugestões ou para saber mais sobre meus workshops e
-cursos personalizados, entre em contato:
+Espero que estes materiais inspirem suas explorações no mundo da
+visualização de dados. Para dúvidas, sugestões ou para saber mais sobre
+meus workshops e cursos personalizados, entre em contato:
 <https://bit.ly/NathaliaDemetrio_DM>
 
 Link deste repo: <https://bit.ly/curso_datavizR_git>
