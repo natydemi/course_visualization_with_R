@@ -40,29 +40,30 @@ Para saber mais, entre em contato: <https://bit.ly/NathaliaDemetrio_DM>
 
 ### Edições
 
-> #### (2025) Visualização de Dados com R - EaD do Programa De Verão do IME-USP
+> #### (2026) Visualização de Dados com R - EaD do Programa De Verão do IME-USP
 
--   Curso oferecido anualmente pelo Programa de Verão do IME-USP. Para
-    mais informações sobre o programa, acesse:
-    <https://bit.ly/cursoVeraoIMEUSP2022> .
+-   Para a ementa do curso oferecido no 55º Programa de Verão do
+    IME-USP:
+    <https://www.ime.usp.br/verao/index.php/turmas/descricao/550>
+
+-   Pessoas monitoras:
+    -   Agatha Priscila Alves Nogueira ([linkedIn](https://www.linkedin.com/in/agatha-nogueira/))
+    -   Alan da Silva ([linkedIn](https://www.linkedin.com/in/alan-silva-341600196))
+    -   Carolina Rodrigues da Silva ([linkedIn](https://www.linkedin.com/in/carolinardg/))
+    -   Izadora de Geus Gome ([linkedIn](http://www.linkedin.com/in/izadora-de-geus-monteiro-gomes-496117268))
+
+> #### (2025) Visualização de Dados com R - EaD do Programa De Verão do IME-USP
 
 -   Para a ementa do curso oferecido no 54º Programa de Verão do
     IME-USP:
     <https://www.ime.usp.br/verao/index.php/turmas/descricao/520>
 
 -   Pessoas monitoras:
+    -   Agatha Priscila Alves Nogueira ([linkedIn](https://www.linkedin.com/in/agatha-nogueira/){.uri})
+    -   Alan da Silva ([linkedIn](https://www.linkedin.com/in/alan-silva-341600196){.uri})
+    -   Lucca Nielsen ([linkedIn](https://www.linkedin.com/in/lucca-nielsen-53b2a9181/){.uri})
+    -   Natan Sant Anna Borges ([linkedIn](https://www.linkedin.com/in/natan-borges-6990b81a4/){.uri})
 
-    -   Agatha Priscila Alves Nogueira
-        ([linkedIn](https://www.linkedin.com/in/agatha-nogueira/){.uri})
-
-    -   Alan da Silva
-        ([linkedIn](https://www.linkedin.com/in/alan-silva-341600196){.uri})
-
-    -   Lucca Nielsen
-        ([linkedIn](https://www.linkedin.com/in/lucca-nielsen-53b2a9181/){.uri})
-
-    -   Natan Sant Anna Borges
-        ([linkedIn](https://www.linkedin.com/in/natan-borges-6990b81a4/){.uri})
 
 > #### (2024) Aprendendo Visualização de Dados - Linkedin Learning
 
