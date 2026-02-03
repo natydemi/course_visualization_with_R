@@ -97,4 +97,4 @@ gapminder |>
     geom_smooth() + 
     theme_minimal() +
     facet_grid( continente ~ .)
-
+ 

@@ -1,5 +1,5 @@
 ---
-title: "Visualização de Dados"
+title: "Visualização de Dados "
 subtitle: "Propósitos de Visualização \n dados: gapminder"
 author: "Nathália Demetrio"
 output:

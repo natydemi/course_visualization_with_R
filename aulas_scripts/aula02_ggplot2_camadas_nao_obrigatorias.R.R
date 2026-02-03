@@ -139,5 +139,5 @@ gapminder %>%
 #https://rstudio.github.io/cheatsheets/html/data-visualization.html 
 
 
-
+ 
 

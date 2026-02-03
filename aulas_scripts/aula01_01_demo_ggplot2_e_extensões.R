@@ -47,3 +47,4 @@ dados |>
   GGally::ggpairs(progress = TRUE) + 
     labs(title = 'Título')
   
+
