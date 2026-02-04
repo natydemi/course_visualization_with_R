@@ -23,13 +23,14 @@ dados <- ggridges::lincoln_weather |>
   janitor::clean_names() |> 
   mutate(media_temperatura_c = (mean_temperature_f - 32)/1.8) 
 
+dados |> skimr::skim()
 
 #ex. 1 -----
 dados |> 
   ggplot(aes(
     x = media_temperatura_c, 
     y = month, 
-    fill = stat(x))) + 
+    fill = after_stat(x))) + 
   ggridges::geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
   scale_x_continuous(expand = c(0, 0)) +
   scale_y_discrete(expand = c(0, 0)) +

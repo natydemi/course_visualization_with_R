@@ -40,6 +40,12 @@ gapminder |>
 # ggplot(gapminder, 
 #        aes(x = pib_per_capita, y = expectativa_de_vida)) + geom_point()
 
+# Note que podemos fazer o mapeamento não apenas no ggplot
+# gapminder |> ggplot() + geom_point(aes(x = pib_per_capita, y = expectativa_de_vida))
+#gapminder |> ggplot() + 
+#  geom_point(aes(x = pib_per_capita, y = expectativa_de_vida)) +
+#  geom_smooth(aes(x = pib_per_capita, y = log(expectativa_de_vida)))
+
 
 #ex.2 -----
 # Adicionando transparência e cor aos pontos, e uma linha de tendência linear
@@ -62,7 +68,7 @@ gapminder |>
 gapminder |> 
   ggplot(aes(x = pib_per_capita, y = expectativa_de_vida))  +
   geom_point(aes(colour = continente), alpha = 0.5) + 
-  geom_smooth()
+  geom_smooth() 
 
 
 #ex.5 -----
@@ -85,6 +91,18 @@ gapminder |>
               filter(continente %in% c("Oceania")), 
             aes(label = pais))
 
+  gapminder |> 
+    filter(ano == 2007) |> 
+    ggplot(aes(x = pib_per_capita, y = expectativa_de_vida, colour = continente))  +
+    geom_point(alpha = 0.5) + 
+    # geom_text(data = gapminder |> 
+    #             filter(ano == 2007) |> 
+    #             filter(pib_per_capita > 40000), 
+    #           aes(label = pais))
+    ggrepel::geom_label_repel(data = gapminder |> 
+                filter(ano == 2007) |> 
+                filter(pib_per_capita > 40000), 
+              aes(label = pais))
   
 
 # para casa: avalie este código ---- 
@@ -96,5 +114,5 @@ gapminder |>
     geom_line(aes(group = pais), color = "gray") +
     geom_smooth() + 
     theme_minimal() +
-    facet_grid( continente ~ .)
+    facet_grid( . ~ continente)
  
