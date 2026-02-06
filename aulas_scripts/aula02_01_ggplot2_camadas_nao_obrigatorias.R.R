@@ -38,7 +38,9 @@ f +
   geom_boxplot(alpha = 0.2, width = 0.2) + 
   geom_violin(alpha = 0.4)
 
-diamonds |> ggplot(aes(x = price, y = cut)) + geom_violin() + geom_boxplot(width = 0.1) 
+diamonds |> ggplot(aes(x = price, y = cut)) + 
+  geom_violin() + 
+  geom_boxplot(width = 0.1) 
 
 # Gráfico de densidade em cristas (ridges).
 ggplot(mpg, aes(hwy, class))+ 
@@ -50,9 +52,19 @@ ggplot(mpg, aes(hwy, class))+
 
 ## coordinate systems -----
 # Utilizando sistemas de coordenadas para ajustar a orientação do gráfico
-ggplot(mpg, aes(class , hwy, color = class)) + 
+
+mpg |> 
+  ggplot(aes(class , hwy, color = class)) + 
   geom_boxplot() +
-  coord_flip() 
+  coord_flip()
+
+mpg |> 
+  mutate(class = forcats::fct_reorder(class, hwy)) |> 
+  mutate(class = forcats::fct_rev(class)) |> 
+  ggplot(aes(class , hwy, color = class)) + 
+    geom_boxplot() +
+    coord_flip() + 
+    theme(legend.position = "none") 
 
 ## theme -----
 # Personalizando o tema do gráfico
@@ -60,7 +72,8 @@ ggplot(mpg, aes(class , hwy, color = class)) +
   geom_boxplot() +
   #theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, vjust = 0.6)) + 
-  theme(legend.position = "left") 
+  theme(legend.position = "none",
+        axis.line.x = element_line(size = 2)) 
 
 # dica: para explorar mais sobre o theme, acesse https://ggplot2tor.com/theme
 
@@ -114,6 +127,7 @@ gapminder %>%
 # como, por exemplo: label_value, label_both, label_parsed
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
+  #facet_grid(cyl ~ drv)
   facet_grid(cyl ~ drv, labeller = "label_both")
 
 # O argumento scales permite ajustar as escalas dos eixos
@@ -130,7 +144,7 @@ gapminder %>%
   geom_point(color = "gray") +
   geom_line(aes(group = pais), color = "gray") +
   geom_smooth() +
-  facet_wrap(continente ~ . , ncol = 2)
+  facet_wrap(continente ~ . , ncol = 3)
 
 
 # para casa ----- 
