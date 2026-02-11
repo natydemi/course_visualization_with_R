@@ -12,6 +12,7 @@ library(patchwork)
 #' Este script tem como objetivo demonstrar as diferentes opções do argumento position no ggplot2,
 #' explorar o uso do pacote patchwork para combinar múltiplos gráficos em layouts organizados e
 #' apresentar funções de escalas do pacote scales aplicadas a diferentes estéticas dos gráficos.
+mpg |> janitor::tabyl(fl)
 mpg |> janitor::tabyl(fl, drv)
 
 #alternativa: (s <- ggplot(mpg, aes(fl, fill = drv)))
@@ -62,18 +63,13 @@ mpg |>
 # Criando um gráfico de barras normalizado
 ggplot(mpg, aes(x = fl, fill = drv)) + 
   geom_bar(position = "fill") +  # Barras empilhadas proporcionalmente
-  
-  scale_fill_brewer(palette = 'Dark2')+  # Definir paleta de cores
-  
-  scale_fill_hue(c = 30)+  # Cores com base no espectro de matiz (saturação)
-  
-  scale_fill_grey()+  # Escala de tons de cinza
-  
-  scale_fill_viridis_d(direction = -1, option = 'A') +  # Paleta Viridis (color blind-friendly)
-
-  # scale_fill_manual(values = c("#ff4d4d", "lightblue", "yellow2"),  # Define cores "manualmente"
-  #                   breaks = c('4', 'f'), na.value = 'green')  # Define cor para valores ausentes
-  
+  # scale_fill_brewer(palette = 'Dark2') +  # Definir paleta de cores
+  # scale_fill_hue(c = 30) +  # Cores com base no espectro de matiz (saturação)
+  # scale_fill_grey() +  # Escala de tons de cinza
+  # scale_fill_viridis_d(direction = -1, option = 'viridis') +  # Paleta Viridis (color blind-friendly)
+  # scale_fill_manual(values = c("#ff4d4d", "darkblue", "green"),  # Define cores "manualmente"
+  #                    breaks = c('4', 'f'), na.value = 'gold3') +  # Define cor para valores ausentes
+  scale_fill_brewer(palette = 'RdPu') +  # Definir paleta de cores
   theme_light() 
 
 #pacote scales -----
@@ -85,7 +81,7 @@ mpg |>
 
 # Adicionando a estilização do eixo y
 ggplot(mpg, aes(x = fl, fill = drv)) + 
-  geom_bar(position = "fill") +  # Barras empilhadas proporcionalmente
+  geom_bar(position = "fill", color = "darkgrey") +  # Barras empilhadas proporcionalmente
   scale_fill_viridis_d(direction = -1, option = 'A') +  # Paleta Viridis (color blind-friendly)
   theme_light() +
   scale_y_continuous(labels = scales::percent)  # Formata o eixo Y como percentual
