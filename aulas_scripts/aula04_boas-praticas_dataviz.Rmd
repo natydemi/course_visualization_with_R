@@ -62,6 +62,7 @@ dados::pixar_bilheteria %>%
     scale_y_continuous(expand = c(0,0), 
                        limits = c(0,1100000000),
                        labels = scales::label_dollar(scale_cut = scales::cut_short_scale())) +
+                           #prefix = "R$ ", big.mark = ".", decimal.mark = ",") 
     labs(title = "Bilheteria mundial - animações Pixar",
            subtitle = "",
            x = NULL,
@@ -616,6 +617,63 @@ dados::bebes %>%
     scale_x_continuous(expand = c(0,.4), breaks = seq(1947, 2017, 10)) +
     labs(title = "Quantidade de bebês dos EUA reportados pela SSA", 
          subtitle = "", x = NULL, y = NULL, fill = NULL) 
+```
+
+
+```{r}
+library(cowplot)
+
+# Dados base
+bebes_summary <- dados::bebes %>% 
+  group_by(ano) %>% 
+  summarise(n = sum(n)) %>% 
+  filter(ano >= 1947)
+
+# Gráfico principal (com coord_cartesian)
+p_principal <- bebes_summary %>% 
+  ggplot(aes(ano, n)) +
+  coord_cartesian(ylim = c(2900000, NA)) +
+  geom_area(fill = "grey", alpha = 0.8) +
+  theme_classic(base_size = 13) +
+  scale_y_continuous(
+    expand = c(0, 0),
+    label  = scales::label_number(scale_cut = scales::cut_short_scale())
+  ) +
+  scale_x_continuous(
+    expand = c(0, .4),
+    breaks = seq(1947, 2017, 10)
+  ) +
+  labs(title    = "Quantidade de bebês dos EUA reportados pela SSA",
+       subtitle = "", x = NULL, y = NULL, fill = NULL)
+
+# Gráfico inset (sem coord_cartesian — visão completa)
+p_inset <- bebes_summary %>% 
+  ggplot(aes(ano, n)) +
+  geom_area(fill = "steelblue", alpha = 0.7) +
+  theme_classic(base_size = 7) +
+  scale_y_continuous(
+    expand = c(0, 0),
+    label  = scales::label_number(scale_cut = scales::cut_short_scale())
+  ) +
+  scale_x_continuous(
+    expand = c(0, .4),
+    breaks = seq(1947, 2017, 20)
+  ) +
+  labs(x = NULL, y = NULL) +
+  # retângulo destacando a região exibida no gráfico principal
+  annotate("rect",
+           xmin = 1947, xmax = 2017,
+           ymin = 2900000, ymax = Inf,
+           fill = "grey", alpha = 0.3, color = "grey40", linewidth = 0.3)
+
+# Combinando
+ggdraw() +
+  draw_plot(p_principal) +
+  draw_plot(p_inset,
+            x      = 0.65,
+            y      = 0.12,
+            width  = 0.25,
+            height = 0.25)
 ```
 
 
